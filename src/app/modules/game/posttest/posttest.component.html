@@ -1,0 +1,54 @@
+<!--@if (loading()) {
+  <div class="loading-center">Cargando post-test...</div>
+
+} @else if (finished()) {
+
+  <div class="test-body">
+    <div class="test-finish-card">
+      <div class="test-finish-icon">✓</div>
+      <h2 class="test-finish-title">¡Post-test completado!</h2>
+      <p class="test-finish-sub">
+        Gracias por responder el cuestionario. Tus respuestas han sido guardadas correctamente.
+      </p>
+      <div class="test-finish-score">
+        <span class="test-finish-score__label">Tu puntaje</span>
+        <span class="test-finish-score__val">{{ finalScore() }} / {{ total() }}</span>
+      </div>
+      <a routerLink="/login" class="btn-primary" style="text-decoration:none;text-align:center;display:block;margin-top:16px">
+        🎮 Cerrar Sesión!
+      </a>
+    </div>
+  </div>
+
+} @else {
+
+  <div class="test-body">
+    <div class="test-header">
+      <h2>Post-test</h2>
+      <div class="progress-track">
+        <div class="progress-fill" [style.width.%]="progress"></div>
+      </div>
+      <span class="progress-label">{{ answered() }} / {{ total() }}</span>
+    </div>
+
+    <div class="question-card">
+      <div class="q-meta">
+        <span class="q-num">Pregunta {{ answered() + 1 }}</span>
+      </div>
+      <p class="q-text">{{ question()?.question_text }}</p>
+      <div class="options">
+        @for (opt of ['a','b','c','d']; track opt) {
+          <div class="option"
+               [class.selected]="selected() === opt"
+               [class.disabled]="!!selected()"
+               (click)="select(opt)">
+            <span class="opt-letter">{{ opt.toUpperCase() }}</span>
+            {{ getOption(opt) }}
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+}
+-->

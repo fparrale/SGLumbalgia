@@ -1,0 +1,91 @@
+<div class="admin-body">
+  <div class="admin-toolbar">
+    <h2>{{ 'config.title' | transloco }}</h2>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-center">{{ 'config.loading' | transloco }}</div>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="save()" class="crud-panel">
+
+      @if (saved()) {
+        <div class="auth-alert auth-alert--success">
+          {{ 'config.saved' | transloco }}
+        </div>
+      }
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+
+        <div class="form-group">
+          <label>{{ 'config.label_lives' | transloco }}</label>
+          <input type="number" formControlName="lives" min="1" max="10">
+          <small style="color:var(--muted);font-size:11px">
+            {{ 'config.hint_lives' | transloco }}
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>{{ 'config.label_questions' | transloco }}</label>
+          <input type="number" formControlName="questions" min="5" max="50">
+          <small style="color:var(--muted);font-size:11px">
+            {{ 'config.hint_questions' | transloco }}
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>{{ 'config.label_time' | transloco }}</label>
+          <input type="number" formControlName="time_seconds" min="5" max="120">
+          <small style="color:var(--muted);font-size:11px">
+            {{ 'config.hint_time' | transloco }}
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>{{ 'config.label_points_correct' | transloco }}</label>
+          <input type="number" formControlName="points_correct" min="1">
+        </div>
+
+        <div class="form-group">
+          <label>{{ 'config.label_points_bonus' | transloco }}</label>
+          <input type="number" formControlName="points_bonus" min="0">
+          <small style="color:var(--muted);font-size:11px">
+            {{ 'config.hint_bonus' | transloco }}
+          </small>
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn-sm primary" style="margin-top:8px">
+        {{ 'config.btn_save' | transloco }}
+      </button>
+
+    </form>
+
+    <!-- Preview -->
+    <div class="crud-panel">
+      <p class="panel-title">{{ 'config.preview_title' | transloco }}</p>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <div class="stat-pill">
+          <p class="val">{{ form.value.lives }}</p>
+          <p class="lbl">{{ 'config.lbl_lives' | transloco }}</p>
+        </div>
+        <div class="stat-pill">
+          <p class="val">{{ form.value.questions }}</p>
+          <p class="lbl">{{ 'config.lbl_questions' | transloco }}</p>
+        </div>
+        <div class="stat-pill">
+          <p class="val">{{ form.value.time_seconds }}s</p>
+          <p class="lbl">{{ 'config.lbl_time' | transloco }}</p>
+        </div>
+        <div class="stat-pill">
+          <p class="val">{{ form.value.points_correct }}</p>
+          <p class="lbl">{{ 'config.lbl_correct' | transloco }}</p>
+        </div>
+        <div class="stat-pill">
+          <p class="val">+{{ form.value.points_bonus }}</p>
+          <p class="lbl">{{ 'config.lbl_bonus' | transloco }}</p>
+        </div>
+      </div>
+    </div>
+  }
+</div>
