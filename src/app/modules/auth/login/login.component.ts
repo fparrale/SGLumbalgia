@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private router    = inject(Router);
   private configSvc = inject(GameConfigService);
   langSvc           = inject(LanguageService);
-  bgImage = `url('${environment.production ? '/SeriusGame_Lumbalgia/' : '/'}login-bg.png')`;
+  bgImage = `url('${environment.production ? '/SGLumbalgia/' : '/'}login-bg.png')`;
   showRanking   = signal(false);
   showRoomForm  = signal(false);
   showHowToPlay = signal(false);
