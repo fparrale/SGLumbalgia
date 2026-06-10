@@ -9,7 +9,7 @@ import { provideTransloco } from '@jsverse/transloco';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    { provide: APP_BASE_HREF, useValue: '/SeriusGame_Lumbalgia/' },
+    { provide: APP_BASE_HREF, useValue: '/SGLumbalgia/' },
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptor])),
     provideTransloco({
