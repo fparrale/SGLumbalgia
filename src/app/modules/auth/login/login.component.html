@@ -170,11 +170,12 @@
             </button>
 
             <!-- Botón idioma aquí -->
-            <button type="button" class="rpg-btn-lang" (click)="langSvc.toggle()">
-            <img [src]="langSvc.currentLang() === 'es' ? 'flag-us.png' : 'flag-es.png'"
-                style="width:20px;height:14px;object-fit:cover;border-radius:2px;margin-right:6px">
-            {{ 'login.btn_lang' | transloco }}
-          </button>
+            <!-- <button type="button" class="rpg-btn-lang" (click)="langSvc.toggle()">
+              <img [src]="langSvc.currentLang() === 'es' ? 'flag-us.png' : 'flag-es.png'"
+                  style="width:20px;height:14px;object-fit:cover;border-radius:2px;margin-right:6px">
+              {{ 'login.btn_lang' | transloco }}
+            </button> -->
+
 
           </form>
         }

@@ -41,11 +41,11 @@
           <div class="nav-dropdown__divider"></div>
 
           <!-- Idioma — siempre visible -->
-          <button class="nav-dropdown__item" (click)="changeLanguage()">
+          <!-- <button class="nav-dropdown__item" (click)="changeLanguage()">
             <img [src]="langSvc.currentLang() === 'es' ? 'flag-us.png' : 'flag-es.png'"
                 style="width:18px;height:13px;object-fit:cover;border-radius:2px">
             {{ langSvc.currentLang() === 'es' ? 'Switch to English' : 'Cambiar a Español' }}
-          </button>
+          </button> -->
 
           <!-- Solo en móvil -->
           @if (auth.isStudent()) {

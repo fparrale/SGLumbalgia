@@ -140,12 +140,12 @@ min(a: number, b: number): number {
   });
 
   generateForm = this.fb.group({
-    category_id:   ['', Validators.required],
-    category_name: ['', Validators.required],
-    difficulty:    ['easy', Validators.required],
-    language:      ['español', Validators.required],
-    count:         [5, [Validators.required, Validators.min(1), Validators.max(10)]]
-  });
+  category_id:   ['', Validators.required],
+  category_name: ['', Validators.required],
+  difficulty:    ['easy', Validators.required],
+  language:      ['español', Validators.required], // ← siempre español
+  count:         [5, [Validators.required, Validators.min(1), Validators.max(10)]]
+});
 
   ngOnInit(): void {
     this.load();
