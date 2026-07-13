@@ -88,7 +88,8 @@ export class PlayComponent implements OnInit, OnDestroy {
 
     sessionStorage.removeItem('gameState');
     console.log('iniciando sesión con idioma:', this.langSvc.currentLang());
-    this.gameSvc.startSession().subscribe({
+    this.gameSvc.startSession(this.langSvc.currentLang()).subscribe({
+
       next: res => {
         this.sessionId.set(res.data.session_id);
         this.question.set(res.data.question);
@@ -141,6 +142,7 @@ export class PlayComponent implements OnInit, OnDestroy {
       opt,
       elapsed,
       this.lives(),
+      this.langSvc.currentLang()  // ← agregar
     ).subscribe({
       next: res => this.handleAnswer(res.data),
       error: () => this.submitting.set(false)
@@ -179,9 +181,9 @@ export class PlayComponent implements OnInit, OnDestroy {
       'a',
       elapsed,
       this.lives(),
+      this.langSvc.currentLang()  // ← agregar
     ).subscribe({
       next: res => {
-        console.log('timeout response', res.data);
         const data = res.data;
         this.score.update(s => s + (data.points_earned ?? 0));
         this.answered.update(n => n + 1);
@@ -254,8 +256,6 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   private handleAnswer(data: AnswerResponse): void {
-    console.log('handleAnswer data:', data);
-    console.log('game_over:', data.game_over);
     this.score.update(s => s + (data.points_earned ?? 0));
     this.answered.update(n => n + 1);
 

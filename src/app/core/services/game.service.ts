@@ -10,35 +10,30 @@ export class GameService {
 
   constructor(private http: HttpClient) {}
 
-  startSession() {
-  return this.http.post<{ data: any }>(`${this.api}/game/start`, {
-    session_type: 'game',
-    language: 'es'  // ← siempre español
-  });
-}
-
-getNextQuestion(sessionId: number) {
-  return this.http.get<{ data: any }>(`${this.api}/game/next-question`, {
-    params: { session_id: sessionId.toString() }
-  });
-}
+  startSession(language: string = 'es') {
+    return this.http.post<{ data: any }>(`${this.api}/game/start`, {
+      session_type: 'game',
+      language
+    });
+  }
 
   sendAnswer(
-  sessionId:      number,
-  questionId:     number,
-  selectedAnswer: string,
-  responseTimeMs: number,
-  livesLeft:      number
-) {
-  return this.http.post<{ data: AnswerResponse }>(`${this.api}/game/answer`, {
-    session_id:       sessionId,
-    question_id:      questionId,
-    selected_answer:  selectedAnswer,
-    response_time_ms: responseTimeMs,
-    lives_left:       livesLeft,
-    language:         'es'  // ← siempre español
-  });
-}
+    sessionId:      number,
+    questionId:     number,
+    selectedAnswer: string,
+    responseTimeMs: number,
+    livesLeft:      number,
+    language:       string
+  ) {
+    return this.http.post<{ data: AnswerResponse }>(`${this.api}/game/answer`, {
+      session_id:       sessionId,
+      question_id:      questionId,
+      selected_answer:  selectedAnswer,
+      response_time_ms: responseTimeMs,
+      lives_left:       livesLeft,
+      language
+    });
+  }
 
   getResult(sessionId: number) {
     return this.http.get<{ data: any }>(`${this.api}/game/result`, {
