@@ -17,6 +17,12 @@ export class GameService {
   });
 }
 
+getNextQuestion(sessionId: number) {
+  return this.http.get<{ data: any }>(`${this.api}/game/next-question`, {
+    params: { session_id: sessionId.toString() }
+  });
+}
+
   sendAnswer(
   sessionId:      number,
   questionId:     number,

@@ -16,7 +16,7 @@ import { LanguageService } from '../../../core/services/language.service';
 export class QuestionsComponent implements OnInit {
   private adminSvc = inject(AdminService);
   private fb       = inject(FormBuilder);
-  private langSvc = inject(LanguageService);
+
   currentPage  = signal(1);
   pageSize     = signal(15);
 
@@ -45,7 +45,7 @@ export class QuestionsComponent implements OnInit {
 
   constructor() {
   effect(() => {
-    this.adminSvc.getQuestions({ language: this.langSvc.currentLang() }).subscribe({
+    this.adminSvc.getQuestions({ language: 'es' }).subscribe({
       next: r => this.questions.set(r.data)
     });
   });
@@ -156,7 +156,7 @@ min(a: number, b: number): number {
   sortAsc = signal<boolean>(true);
 
   loadCategories(): void {
-    this.adminSvc.getCategories(this.langSvc.currentLang()).subscribe({
+    this.adminSvc.getCategories('es').subscribe({
       next: r => this.categories.set(r.data)
     });
   }
@@ -166,7 +166,7 @@ min(a: number, b: number): number {
   }
 
   load(): void {
-    this.adminSvc.getQuestions({ language: this.langSvc.currentLang() }).subscribe({
+    this.adminSvc.getQuestions({ language: 'es' }).subscribe({
       next: r => this.questions.set(r.data)
     });
   }
@@ -312,7 +312,7 @@ min(a: number, b: number): number {
       category_name: v.category_name!,
       difficulty:    v.difficulty!,
       count:         Number(v.count),
-      language:      v.language!
+      language:      'español'
     }).subscribe({
       next: res => {
         this.generateResult.set(res.data);
