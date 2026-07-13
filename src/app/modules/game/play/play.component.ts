@@ -252,6 +252,8 @@ export class PlayComponent implements OnInit, OnDestroy {
   }
 
   private handleAnswer(data: AnswerResponse): void {
+    console.log('handleAnswer data:', data);
+    console.log('game_over:', data.game_over);
     this.score.update(s => s + (data.points_earned ?? 0));
     this.answered.update(n => n + 1);
 
