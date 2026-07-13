@@ -373,19 +373,8 @@ export class PlayComponent implements OnInit, OnDestroy {
         });
       }
     } else {
-      this.loading.set(true);
-      this.gameSvc.getNextQuestion(this.sessionId()).subscribe({
-        next: res => {
-          this.question.set(res.data);
-          this.loading.set(false);
-          this.startTimer();
-        },
-        error: () => {
-          this.router.navigate(['/result'], {
-            queryParams: { session_id: this.sessionId() }
-          });
-        }
-      });
+      this.question.set(d.next_question);
+      this.startTimer();
     }
   }
 
