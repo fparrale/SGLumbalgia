@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, OnDestroy, signal, computed } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, signal, computed, ChangeDetectorRef  } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { GameService } from '../../../core/services/game.service';
@@ -18,6 +18,7 @@ export class PlayComponent implements OnInit, OnDestroy {
   private router  = inject(Router);
   auth            = inject(AuthService);
   private langSvc = inject(LanguageService);
+  private cdr = inject(ChangeDetectorRef);
 
   sessionId    = signal<number>(0);
   question     = signal<Question | null>(null);
@@ -160,6 +161,7 @@ export class PlayComponent implements OnInit, OnDestroy {
         }
         return t - 1;
       });
+      this.cdr.detectChanges();
     }, 1000);
   }
 
