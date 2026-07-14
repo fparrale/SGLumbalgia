@@ -299,20 +299,18 @@ export class PlayComponent implements OnInit, OnDestroy {
       this.gameOverSound.volume = 0.7;
       this.gameOverSound.play().catch(() => {});
 
-      if (data.reason === 'no_lives') {
-        sessionStorage.setItem('gameResult', 'defeat');
-        sessionStorage.setItem('defeatStats', JSON.stringify({
-          score:      data.score ?? 0,
-          total:      data.total ?? 0,
-          percentage: data.percentage ?? 0
-        }));
-        setTimeout(() => this.router.navigate(['/ranking']), 200);
-      } else {
-        setTimeout(() => this.router.navigate(['/result'], {
-          queryParams: { session_id: this.sessionId() }
-        }), 200);
-      }
-    } else {
+      this.feedbackData.set({
+        ...data,
+        selected:     this.selected(),
+        questionText: this.question()?.question_text,
+        livesLeft:    this.lives(),
+        score:        this.score(),
+        answered:     this.answered(),
+        maxQuestions: this.maxQuestions(),
+        streak:       this.streak(),
+      });
+      this.showFeedback.set(true);
+    }else {
       sessionStorage.setItem('gameState', JSON.stringify({
         sessionId:    this.sessionId(),
         maxLives:     this.maxLives(),
